@@ -1,0 +1,25 @@
+import CustomCursorDemo from './demo/customCursorDemo.jsx';
+
+<CustomCursorDemo />
+
+```jsx
+  const customCursor = ({ isPointerDown }) => {
+    return isPointerDown ? 'grabbing': 'grab'
+  }
+  return (
+    <PanelGroup customCursor={customCursor}>
+      <Panel minSize={10} defaultSize={30}>
+        left
+      </Panel>
+      <PanelResizeHandle />
+      <Panel minSize={20} defaultSize={30}>
+        right
+      </Panel>
+    </PanelGroup>
+  )
+```
+
+
+
+
+

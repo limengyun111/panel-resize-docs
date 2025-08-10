@@ -1,0 +1,35 @@
+import NestedDemo from './demo/nestedDemo.jsx';
+
+<NestedDemo />
+
+```jsx
+<PanelGroup direction="horizontal">
+  <Panel>
+    left
+  </Panel>
+  <PanelResizeHandle />
+  <Panel>
+    <PanelGroup direction="vertical">
+      <Panel>
+        top
+      </Panel>
+      <PanelResizeHandle />
+      <Panel>
+        <PanelGroup direction="horizontal">
+          <Panel>
+            left
+          </Panel>
+          <PanelResizeHandle />
+          <Panel>
+            right
+          </Panel>
+        </PanelGroup>
+      </Panel>
+    </PanelGroup>
+  </Panel>
+  <PanelResizeHandle />
+  <Panel>
+    right
+  </Panel>
+</PanelGroup>
+```

@@ -1,0 +1,32 @@
+import ImperativePanelGroupAPIDemo from './demo/imperativePanelGroupAPIDemo.jsx';
+
+<ImperativePanelGroupAPIDemo />
+
+
+```jsx
+  const ref = useRef(null);
+
+  const handleReset = () => {
+    ref.current.setLayout([{ minSize: 10, defaultSize: 25 }, { minSize: 30, defaultSize: 75 }]);
+  }
+
+  return (
+    <div className='demo-wrap'>
+      <div onClick={handleReset}>Reset Layout</div>
+      <PanelGroup panelRef={ref}>
+        <Panel>
+          left
+        </Panel>
+        <PanelResizeHandle />
+        <Panel>
+          right
+        </Panel>
+      </PanelGroup>
+    </div>
+  )
+```
+
+
+
+
+
