@@ -2,6 +2,7 @@ import * as path from 'node:path';
 import { defineConfig } from 'rspress/config';
 
 export default defineConfig({
+  base: '/panel-resize-docs',
   root: path.join(__dirname, 'docs'),
   title: 'Panel Resize',
   icon: '/panel-resize.svg',
@@ -13,7 +14,7 @@ export default defineConfig({
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/web-infra-dev/rspress',
+        content: 'https://github.com/limengyun111/panel-resize-docs',
       },
     ],
   },
