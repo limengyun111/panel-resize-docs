@@ -1,2 +1,24 @@
 import PersisDemo from './demo/persisDemo.jsx';
 
+#### 代码示例
+
+为PanelGroup提供 autoSaveId 属性后，布局会自动保存。您可以调整面板大小，然后重新加载页面或切换页面。布局的保留时间为1小时。
+
+<PersisDemo />
+
+```jsx
+ <PanelGroup autoSaveId="persistence">
+   <Panel>
+     left
+   </Panel>
+   <PanelResizeHandle />
+   <Panel>
+     middle
+   </Panel>
+   <PanelResizeHandle />
+   <Panel>
+     right
+   </Panel>
+ </PanelGroup>
+
+```

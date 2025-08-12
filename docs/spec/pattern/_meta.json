@@ -1,0 +1,17 @@
+[
+  {
+    "type": "file",
+    "name": "param",
+    "label": "参数"
+  },
+  {
+    "type": "file",
+    "name": "api",
+    "label": "API"
+  },
+  {
+    "type": "file",
+    "name": "detail",
+    "label": "其他"
+  }
+]

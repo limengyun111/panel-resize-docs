@@ -1,0 +1,17 @@
+[
+  {
+    "type": "file",
+    "name": "layout",
+    "label": "布局"
+  },
+  {
+    "type": "file",
+    "name": "position",
+    "label": "定位"
+  },
+  {
+    "type": "file",
+    "name": "react",
+    "label": "React和JS"
+  }
+]

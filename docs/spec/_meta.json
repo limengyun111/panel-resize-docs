@@ -1,0 +1,16 @@
+[
+   {
+    "type": "dir",
+    "name": "process",
+    "label": "从0到1",
+    "collapsible": true,
+    "collapsed": false
+  },
+   {
+    "type": "dir",
+    "name": "pattern",
+    "label": "设计模式",
+    "collapsible": true,
+    "collapsed": false
+  }
+]

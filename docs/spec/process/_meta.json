@@ -1,0 +1,22 @@
+[
+  {
+    "type": "file",
+    "name": "handler",
+    "label": "拖拽组件"
+  },
+  {
+    "type": "file",
+    "name": "singlePanel",
+    "label": "单个面板"
+  },
+  {
+    "type": "file",
+    "name": "twoPanel",
+    "label": "两个面板"
+  },
+  {
+    "type": "file",
+    "name": "multiPanel",
+    "label": "多个面板"
+  }
+]
