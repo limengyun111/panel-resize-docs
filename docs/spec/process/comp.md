@@ -6,7 +6,6 @@
 在useEffect中初始化PanelResize类，并传递参数
 
 ```jsx
-//父组件
 function PanelGroup(props) {
   const parentEle = useRef(null);
   const { direction, children, customCursor, panelRef = { current: undefined }, autoSaveId, className } = props;
@@ -24,6 +23,9 @@ function PanelGroup(props) {
 
     panelRef.current = new PanelResize(parentEle.current, { sizeData: panelSizeData, direction, customCursor, autoSaveId });
   }, []);
+
+  return <div ref={parentEle} className={`wrapper ${className || ''}`}>{children}</div>
+}
 ```
 
 #### panel组件
