@@ -18,5 +18,10 @@
     "type": "file",
     "name": "multiPanel",
     "label": "多个面板"
+  },
+  {
+    "type": "file",
+    "name": "comp",
+    "label": "组件化"
   }
 ]

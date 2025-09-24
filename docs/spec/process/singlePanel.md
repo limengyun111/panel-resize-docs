@@ -1,1 +1,156 @@
-#### 一个面板
+# 单个面板
+### 一、核心实现原理
+<font style="color:rgb(64, 64, 64);">通过监听主控元素的移动事件（鼠标拖拽或触摸移动），实时计算位移量，然后将这个位移量按比例映射到目标元素的宽高属性上，形成联动效果。</font>
+
+### 二、关键技术实现
+```html
+<div id="panel">panel</div>
+<div id="handler">handler ele</div>
+```
+
+```javascript
+// 主控元素事件监听
+const handleEle = document.getElementById('handler');
+    const panelEle = document.getElementById('panel');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    let mouseBegin = {
+      x: undefined,
+      y: undefined
+    }
+    let eleBegin = {
+      x: undefined,
+      y: undefined
+    }
+    let panelSize = {
+      width: undefined,
+      height: undefined
+    }
+    let panelMinSize = {
+      width: 100,
+      height: 100
+    }
+
+
+    handleEle.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = handleEle.getBoundingClientRect();
+      mouseBegin.x = e.x;
+      mouseBegin.y = e.y;
+      const style = window.getComputedStyle(handleEle);
+      const matrix = new DOMMatrix(style.transform);
+      eleBegin = { x: matrix.m41, y: matrix.m42 };
+
+      const panelElePos = panelEle.getBoundingClientRect();
+      const { width, height } = panelElePos;
+      panelSize = { width, height }
+
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      offsetX = e.x - mouseBegin.x;
+      offsetY = e.y - mouseBegin.y;
+      handleEle.style.transform = `translate(${eleBegin.x + offsetX}px, ${eleBegin.y + offsetY}px)`;
+
+      console.log(offsetX, panelSize.width + offsetX);
+      panelEle.style.width = Math.max(panelMinSize.width, panelSize.width + offsetX)+ 'px';
+      panelEle.style.height = Math.max(panelMinSize.height, panelSize.height + offsetY )+ 'px';
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+```
+
+### 三、最大最小宽高
+```html
+<div id="panel">panel</div>
+<div id="handler">handler ele</div>
+```
+
+```javascript
+<script>
+
+    const handleEle = document.getElementById('handler');
+    const panelEle = document.getElementById('panel');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    let mouseBegin = {
+      x: undefined,
+      y: undefined
+    }
+    let eleBegin = {
+      x: undefined,
+      y: undefined
+    }
+    let panelSize = {
+      width: undefined,
+      height: undefined
+    }
+    let panelMinSize = {
+      width: 100,
+      height: 200
+    }
+
+    handleEle.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      const rect = handleEle.getBoundingClientRect();
+      mouseBegin.x = e.x;
+      mouseBegin.y = e.y;
+      const style = window.getComputedStyle(handleEle);
+      const matrix = new DOMMatrix(style.transform);
+      eleBegin = { x: matrix.m41, y: matrix.m42 };
+
+      const panelElePos = panelEle.getBoundingClientRect();
+      const { width, height } = panelElePos;
+      panelSize = { width, height }
+
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      offsetX = e.x - mouseBegin.x;
+      offsetY = e.y - mouseBegin.y;
+
+      // 需要实时更新拖拽条的位置，这样在满足条件后，可以给拖拽条的偏移量设置固定值
+      const style = window.getComputedStyle(handleEle);
+      const matrix = new DOMMatrix(style.transform);
+      eleBegin = { x: matrix.m41, y: matrix.m42 };
+
+      let translateX;
+      let translateY;
+
+      if (panelSize.width + offsetX <= panelMinSize.width && offsetX < 0) {
+        translateX = eleBegin.x
+      } else if (panelSize.height + offsetY <= panelMinSize.height && offsetY < 0) {
+       translateY = eleBegin.y;
+      } else {
+        translateX = eleBegin.x + offsetX;
+        translateY = eleBegin.y + offsetY;
+      }
+    
+      handleEle.style.transform = `translate(${translateX}px, ${translateY}px)`;
+
+      mouseBegin = {x: e.x, y: e.y };
+
+      // 元素的最大最小宽度限制
+      const w = Math.max(panelSize.width + offsetX, panelMinSize.width);
+      const h = Math.max(panelSize.height + offsetY, panelMinSize.height);
+      panelEle.style.width = w + 'px';
+      panelEle.style.height = h+ 'px';
+      panelSize = { width: w, height: h}
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+  </script>
+```
+
+### 总结
+在实现到达最大最小值拖拽条不能移动的需求时，不能只记录mousedown时拖拽条的位置，要记录实时位置，这样在到达限制后，可以给translateX或者translateY设置为固定值。
+

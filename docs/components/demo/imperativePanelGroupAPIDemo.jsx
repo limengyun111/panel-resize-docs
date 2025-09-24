@@ -4,7 +4,7 @@ export default function ImperativePanelGroupAPIDemo() {
   const ref = useRef(null);
 
   const handleReset = () => {
-    ref?.current?.setLayout([{ minSize: 10, defaultSize: 25 }, { minSize: 30, defaultSize: 75 }]);
+    ref?.current?.setLayout([{ minSize: 10, defaultSize: 50 }, { minSize: 30, defaultSize: 50 }]);
   }
 
   return (

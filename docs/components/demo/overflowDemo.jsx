@@ -5,7 +5,7 @@ export default function OverflowDemo() {
     <div className='demo-wrap'>
       <PanelGroup>
         <Panel>
-          <div style={{ overflow: 'auto', padding: '10px' }}>
+          <div style={{ overflow: 'auto', padding: '10px', height: '100%' }}>
             这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子
             这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子
             这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子
@@ -25,7 +25,7 @@ export default function OverflowDemo() {
         </Panel>
         <PanelResizeHandle />
         <Panel>
-          <div style={{ overflow: 'auto', padding: '10px' }}>
+          <div style={{ overflow: 'auto', padding: '10px', height: '100%'  }}>
              这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子
             这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子
             这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子这是一个例子

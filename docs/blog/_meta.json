@@ -1,17 +1,18 @@
 [
   {
     "type": "file",
-    "name": "layout",
-    "label": "布局"
+    "name": "mouse",
+    "label": "鼠标相对位移与绝对位移"
+  },
+  {
+     "type": "file",
+    "name": "jsAdvantage",
+    "label": "原生JS实现拖拽面板的优势分析"
+    
   },
   {
     "type": "file",
-    "name": "position",
-    "label": "定位"
-  },
-  {
-    "type": "file",
-    "name": "react",
-    "label": "React和JS"
+    "name": "otherIssue",
+    "label": "一些小问题"
   }
 ]

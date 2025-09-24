@@ -1,17 +1,17 @@
 [
   {
-    "text": "设计",
-    "link": "/spec/",
-    "activeMatch": "/spec/"
+    "text": "场景",
+    "link": "/spec/process/handler",
+    "activeMatch": "/spec/process/handler"
   },
   {
-    "text": "组件",
+    "text": "案例",
     "link": "/components/",
     "activeMatch": "/components/"
   },
   {
     "text": "博客",
-    "link": "/blog/",
-    "activeMatch": "/blog/"
+    "link": "/blog/mouse",
+    "activeMatch": "/blog/mouse"
   }
 ]

@@ -6,6 +6,7 @@ export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Panel Resize',
   icon: '/panel-resize.svg',
+
   themeConfig: {
     prevPageText: '上一页',
     nextPageText: '下一页',

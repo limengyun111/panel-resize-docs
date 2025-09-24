@@ -1,0 +1,30 @@
+import FixedWidthDemo from './demo/fixedWidthDemo.jsx';
+
+#### 代码示例
+
+此示例是一个 3 列水平 PanelGroup。最左侧为固定100px，其余两个面板可自由拖拽。
+
+
+<FixedWidthDemo />
+
+
+```jsx
+  <PanelGroup>
+    <Panel minSize={10} defaultSize="100px">
+      left
+    </Panel>
+    <PanelResizeHandle />
+    <Panel minSize={20} defaultSize={30}>
+      middle
+    </Panel>
+    <PanelResizeHandle />
+    <Panel minSize={20} defaultSize={40}>
+      right
+    </Panel>
+  </PanelGroup>
+```
+
+
+
+
+

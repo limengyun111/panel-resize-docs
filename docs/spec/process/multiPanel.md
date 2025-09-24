@@ -1,1 +1,152 @@
-#### 多个面板
+# 多个面板
+### 前言
+拖拽功能由拖拽条、面板组成，如果为每个拖拽条单独添加鼠标事件，每个面板单独修改宽度，会增加很多行代码和工作量。因此考虑封装的方式较少代码量，首先是拖拽条的封装
+
+### 拖拽条
+```html
+class DragElement {
+  static paramEleHistory = new Set();
+
+  constructor(dragEle, customDragMove) {
+    this.dragEle = dragEle;
+    this.isEnabled = true;
+    this.customDragMove = customDragMove;
+    this.dragEleBeginPos = undefined;
+    if (DragElement.paramEleHistory.has(this.dragEle)) {
+      return [...DragElement.paramEleHistory].find(item => item === this.dragEle);
+    }
+    DragElement.paramEleHistory.add(this.dragEle);
+
+    this.isBeginMove = false;
+    this.mouseBeginPos = undefined;
+    this.draggable();
+  }
+  // 鼠标位置初始值
+  onMoveDown(x, y) {
+    // todo 等待外部传入
+  }
+  onMouseMove(offSetX, offsetX, x, y) {
+    // todo 等待外部传入
+  }
+  // 鼠标位置结束
+  onMouseUp(x, y) {
+    // todo 等待外部传入
+
+  }
+  onMouseLeave(x, y) {
+    // todo 等待外部传入
+
+  }
+  
+  // 一系列工具函数
+
+
+  draggable = () => {
+    this.dragEle.addEventListener('touchstart', (event) => {
+      const touch = event.touches[0];
+      this.onMouseDownHandler(touch.clientX, touch.clientY);
+    });
+    this.dragEle.addEventListener('mousedown', (event) => {
+      this.onMouseDownHandler(event.x, event.y);
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      this.dragEle.classList.add("ew-resize");
+      event.preventDefault();
+      if (this.isBeginMove) {
+        this.setDragElePos(event.x, event.y);
+      }
+    });
+    document.addEventListener('touchmove', (event) => {
+      event.preventDefault();
+      const touch = event.touches[0];
+      if (this.isBeginMove) {
+        this.setDragElePos(touch.clientX, touch.clientY);
+      }
+    }, { passive: false });
+
+    document.addEventListener('mouseup', (event) => {
+      this.isBeginMove = false;
+      document.body.classList.remove("ew-resize");
+
+      this.onMouseUp && this.onMouseUp(event.x, event.y);
+
+    });
+    
+     this.dragEle.addEventListener('mouseleave', (event) => {
+       this.onMouseLeave();
+
+    });
+    this.dragEle.addEventListener('touchend', (event) => {
+      this.isBeginMove = false;
+      const touch = event.touches[0];
+      document.body.classList.remove("ew-resize");
+      this.onMouseUp && this.onMouseUp(touch.clientX, touch.clientY);
+    });
+
+  }
+}
+```
+
+### 面板
+```html
+class PanelResize {
+  constructor(parentEle) {
+    // 一系列状态
+    this.init()
+  }
+init() {
+// 获取面板及拖拽元素
+const children = Array.from(this.parentEle.children);
+    this.totalWidth = this.getTotalWidth();
+
+    children.forEach(child => {
+      if (child.id.includes('panel')) {
+        this.panelsEle.push(child);
+      } else if (child.id.includes('handle')) {
+        this.handlesEle.push(child);
+      }
+    });
+}
+}
+```
+
+### 具体使用
+```html
+<body>
+  <div class="wrapper" id="wrapper-resize">
+    <div class="panel-one">panel-one</div>
+    <div class="handle-one"></div>
+    <div class="panel-two">panel-two</div>
+    <div class="handle-two"></div>
+    <div class="panel-three">panel-three</div>
+  </div>
+  <script>
+   // 传入父元素
+    const panelResize = new PanelResize(document.getElementById('wrapper-resize'), [[10,30], [20,30], [20,40]], 'vertical');
+  
+  </script>
+```
+
+### 重点问题：实现级联面板
+级联面板是在拖拽时，首先对拖拽条左右面板进行伸缩，如果不够了，计算剩余量，将剩余量应用到下一个面板。以次类推，直到所有面板应用完毕，或者剩余量为0。但这种思路有一个问题是，如果面板直接应用偏移量，那剩余面板可能不能符合最大/最小限制，这样就不能保证每个面板都要在限制的范围内进行拖拽。所以就需要先知道总体偏移量，再结合限制范围进行偏移
+
+```javascript
+ // 计算左右偏移量
+    const posMoveNumber = this.isLeftMove(offset);
+    const negMoveNumber = this.isRightMove(offset);
+    // 不能再偏移，直接返回
+    if (posMoveNumber <= Math.abs(offset) || negMoveNumber <= Math.abs(offset)) {
+      return;
+    }
+    // 比较左右和鼠标偏移量并进行偏移
+    const minMoveNumber = offset > 0
+      ? Math.min(offset, posMoveNumber, negMoveNumber)
+      : Math.max(offset, -posMoveNumber, -negMoveNumber);
+    moveLeftPanel(minMoveNumber);
+    moveRightPanel(minMoveNumber);
+```
+
+### 总结
+级联面板是实现多面板的难点，可以通过预先计算偏移量实现。还有一些小细节要注意，比如因为是动态布局，一个面板的宽度变化会影响其他面板，所以需要预先保存各个面板的原始值，在计算好各自的偏移量后，一起修改。
+

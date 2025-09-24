@@ -2,14 +2,14 @@
    {
     "type": "dir",
     "name": "process",
-    "label": "从0到1",
+    "label": "从 0 到 1",
     "collapsible": true,
     "collapsed": false
   },
    {
     "type": "dir",
-    "name": "pattern",
-    "label": "设计模式",
+    "name": "usage",
+    "label": "在 抖音云 中使用",
     "collapsible": true,
     "collapsed": false
   }

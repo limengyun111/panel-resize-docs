@@ -10,6 +10,7 @@
   "horizontal",
   "vertical",
   "nested",
+  "fixedWidth",
   {
     "type": "divider"
   },
