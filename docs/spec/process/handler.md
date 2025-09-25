@@ -54,8 +54,8 @@
 
 <font style="color:rgb(64, 64, 64);">CSS对象模型视图是连接CSS样式与JavaScript交互的核心接口，它定义了如何通过JavaScript访问和操作元素的视觉呈现属性，该模型包含多层次的坐标系体系。在元素拖拽移动中，坐标系是元素可以移动的基础，定义了translate变换的元素会创建一个新的局部坐标系，这个坐标系和原始坐标系在坐标系原点和定位基准等有所不同</font>
 
-+ `**<font style="color:rgb(64, 64, 64);background-color:rgb(236, 236, 236);">getBoundingClientRect().left/top</font>**`<font style="color:rgb(64, 64, 64);"> 获取的是元素在</font>**<font style="color:rgb(64, 64, 64);">原始坐标系</font>**<font style="color:rgb(64, 64, 64);">中的位置，不能获取在translate局部坐标系的位置</font>
-+ `**<font style="color:rgb(64, 64, 64);background-color:rgb(236, 236, 236);">translate()</font>**`<font style="color:rgb(64, 64, 64);"> 变换是相对于元素自身</font>**<font style="color:rgb(64, 64, 64);">局部坐标系</font>**<font style="color:rgb(64, 64, 64);">的位移，不是相对于文档左上角</font>
++ getBoundingClientRect().left/top 获取的是元素在原始坐标系中的位置，不能获取在translate局部坐标系的位置
++ translate变换是相对于元素自身局部坐标系的位移，不是相对于文档左上角
 
 
 
@@ -240,5 +240,5 @@ document.addEventListener('mouseup', () => {
 
 
 ## <font style="color:rgb(64, 64, 64);">结论</font>
-<font style="color:rgb(64, 64, 64);">理解CSS坐标系是实现元素拖拽的基础，在改变元素位置时，要考虑是否在同一个坐标系。而</font>`**<font style="color:rgb(64, 64, 64);background-color:rgb(236, 236, 236);">transform: translate</font>**`<font style="color:rgb(64, 64, 64);">因其优异的性能和简洁的实现方式，已成为现代Web开发中实现拖拽功能的首选方案。对于需要精确控制层叠上下文或兼容旧浏览器的场景，可考虑使用</font>`**<font style="color:rgb(64, 64, 64);background-color:rgb(236, 236, 236);">position: absolute</font>**`<font style="color:rgb(64, 64, 64);">方案，而margin方案由于其性能缺陷，在实际开发中应避免用于拖拽实现。</font>
+理解CSS坐标系是实现元素拖拽的基础，在改变元素位置时，要考虑是否在同一个坐标系。而 transform: translate 因其优异的性能和简洁的实现方式，已成为现代Web开发中实现拖拽功能的首选方案。对于需要精确控制层叠上下文或兼容旧浏览器的场景，可考虑使用position: absolute 方案，而margin方案由于其性能缺陷，在实际开发中应避免用于拖拽实现。
 

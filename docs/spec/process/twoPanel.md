@@ -2,9 +2,9 @@
 ### 初步方案：基于translate偏移量的控制方式
 1. 实现思路
 
-<font style="color:rgb(64, 64, 64);">通过监听主控元素的</font>`**<font style="color:rgb(64, 64, 64);background-color:rgb(236, 236, 236);">translate</font>**`<font style="color:rgb(64, 64, 64);">位移变化，将位移量按比例转换为目标元素的宽高值。这种方案保持主控元素的位置属性不变，仅通过视觉位移实现控制。</font>
+通过监听主控元素的translate位移变化，将位移量按比例转换为目标元素的宽高值。这种方案保持主控元素的位置属性不变，仅通过视觉位移实现控制。
 
-2. 可能的写法
+1. 可能的写法
 
 ```css
 #wrapper {

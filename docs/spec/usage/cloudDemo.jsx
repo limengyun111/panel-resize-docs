@@ -1,6 +1,5 @@
 import { PanelGroup, Panel, PanelResizeHandle } from 'panel-resize-v1';
-import { useEffect, useRef, useState } from 'react';
-// import { editor } from 'monaco-editor/esm/vs/editor/editor.api';
+import { useState } from 'react';
 import Editor from '@monaco-editor/react';
 
 const LeftPanel = () => {
@@ -25,10 +24,7 @@ const LeftPanel = () => {
   )
 }
 const EditorPanel = ({ getEditorInstance }) => {
-  // const [editorInstance, setEditorInstance] = useState(null);
-
-  // const panelRef = useRef<HTMLDivElement>(null);
-
+ 
   // // 初始化 Editor 并保存实例
   const handleEditorMount = (editor) => {
     getEditorInstance && getEditorInstance(editor);
@@ -110,7 +106,7 @@ const ActionPanel = () => {
 
 }
 export default function CloudDemo() {
-  const [editorInstance, setEditorInstance] = useState(null);
+  const [, setEditorInstance] = useState(null);
 
   const getEditorInstance = (editor) => {
     setEditorInstance(editor)
