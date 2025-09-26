@@ -1,4 +1,11 @@
+import TwoPanelDemo from './demo/twoPanelDemo';
+
 # 两个面板
+
+<TwoPanelDemo />
+
+<br />
+
 ### 初步方案：基于translate偏移量的控制方式
 1. 实现思路
 
@@ -84,18 +91,17 @@ const wrapperEle = document.getElementById('wrapper');
 
 ```
 
-3. <font style="color:rgb(64, 64, 64);">出现的问题：</font>
+3. 出现的问题：
 
 拖拽条的位置和预期位置不一致
 
-<font style="color:rgb(64, 64, 64);">产生问题的原因是面板宽度变化触发Flex容器重新计算项目位置，会与主动应用translate产生位移量叠加</font>
-
+产生问题的原因是面板宽度变化触发Flex容器重新计算项目位置，会与主动应用translate产生位移量叠加
 ，导致移动速度翻倍，出现拖拽条位置和预期不一致的问题
 
 ![](https://cdn.nlark.com/yuque/0/2025/png/745200/1755093111676-e781cf62-47ba-47d8-b3cc-ca2b4745951d.png)
 
 ### 最终方案：使用flex布局驱动
-这个问题的解决办法比较简单的是采用纯flex布局驱动，<font style="color:rgb(64, 64, 64);">通过动态调整相邻面板的width或者flex-grow实现拖拽效果</font>，无需手动改变拖拽条位置
+这个问题的解决办法比较简单的是采用纯flex布局驱动，通过动态调整相邻面板的width或者flex-grow实现拖拽效果，无需手动改变拖拽条位置
 
 ```javascript
  document.addEventListener('mousemove', (e) => {
@@ -117,8 +123,8 @@ const wrapperEle = document.getElementById('wrapper');
     });
 ```
 
-### <font style="color:rgb(64, 64, 64);">结论</font>
-<font style="color:rgb(64, 64, 64);">在双面需求中，可以利用Flex容器的弹性分配特性，通过直接修改width/flex-grow值实现尺寸控制，主控元素位置会自动适应布局变化。</font>
+### 结论
+在双面需求中，可以利用Flex容器的弹性分配特性，通过直接修改width/flex-grow值实现尺寸控制，主控元素位置会自动适应布局变化。
 
 
 

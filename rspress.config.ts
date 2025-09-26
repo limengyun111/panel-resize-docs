@@ -15,7 +15,7 @@ export default defineConfig({
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/limengyun111/panel-resize-docs',
+        content: 'https://github.com/limengyun111/panel-resize-js',
       },
     ],
   },
